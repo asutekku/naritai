@@ -12,7 +12,6 @@ import Help from './views/Help';
 import Conjugations from './views/Conjugations';
 import Conjugation from './views/Conjugation';
 
-
 export interface AppProps {
 }
 

@@ -5,7 +5,9 @@ import ButtonContainer from './ButtonContainer';
 interface MenuProps {
     title: string;
     customReturn?: string
+    verticalCenter?: boolean;
     children?: any;
+    hideReturn?: boolean;
 }
 
 const MenuView = (props: MenuProps) => (
@@ -17,15 +19,17 @@ const MenuView = (props: MenuProps) => (
                 </h1>
             </div>
         </div>
-        <div className={'section-content'}>
+        <div className={`section-content ${props.verticalCenter ? 'vertical-center' : ''}`}>
             {props.children}
         </div>
-        <div className={'section-button'}>
-            <ButtonContainer>
-                <RoundedButton title={'Return'}
-                               link={props.customReturn ? props.customReturn : '/'}/>
-            </ButtonContainer>
-        </div>
+        {!props.hideReturn ?
+            <div className={'section-button'}>
+                <ButtonContainer>
+                    <RoundedButton title={'Return'}
+                                   link={props.customReturn ? props.customReturn : '/'}/>
+                </ButtonContainer>
+            </div>
+            : null}
     </>
 );
 

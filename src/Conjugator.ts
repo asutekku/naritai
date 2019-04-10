@@ -3,6 +3,7 @@ let conjugationForms: any[] = require('./assets/dict/forms.json');
 export class conjugator {
     private static verbTypes = ['v5u', 'v5k', 'v5g', 'v5s', 'v5t', 'v5m', 'v5b', 'v5n', 'v5r', 'v1'];
     private static verbEndings = ['う', 'く', 'ぐ', 'す', 'つ', 'む', 'ぶ', 'ぬ', 'る', 'る'];
+    private static irregular = ['する', 'ある','いる', 'いく', 'くれる', 'いう', 'とう'];
 
     /**
      * conjugate a verb
@@ -13,7 +14,9 @@ export class conjugator {
         if (type.toLowerCase().indexOf('v1') > -1) {
             index = conjugator.verbTypes.indexOf('v1');
             verbstem = verb.substring(0, verb.length - 1);
-            console.log('this is an ichidan verb');
+        } else if (this.irregular.includes(verb)) {
+            verbstem = verb.substring(0, verb.length - 1);
+            return;
         } else {
             let lastchar = verb.substring(verb.length - 1, verb.length);
             index = conjugator.verbEndings.indexOf(lastchar);

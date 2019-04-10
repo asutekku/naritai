@@ -15,6 +15,7 @@ $bg: #e1e2e1;
 $bg-light: #ffffff;
 $bg-dark: #e1e2e1;
 $bg-darker: #b3b4b3;
+$bg-darkerer: #919291;
 
 $correct: #50c86b;
 $correct-dark: #47ab58;
@@ -33,7 +34,7 @@ $border-color: #e7e7e7;
 
 html, body {
   font-family: 'Comfortaa', sans-serif;
-  background: $bg-light;
+  background: $bg;
   margin: 0;
   height: 100%;
   -webkit-touch-callout: none;
@@ -60,7 +61,6 @@ html, body {
     margin-block-start: 0;
     margin-block-end: 0;
   }
-
 
   .quiz-container {
     color: $bg-light;
@@ -112,6 +112,7 @@ html, body {
         display: flex;
         align-items: center;
         justify-content: center;
+        touch-action: none;
 
         .quiz-question-container-inner {
           $padding: 0em;
@@ -245,8 +246,8 @@ html, body {
     }
 
     &.disabled {
-      background: $button-disabled;
-      border-bottom: 4px $bg-darker solid;
+      background: $bg-darker;
+      border-bottom: 4px $bg-darkerer solid;
 
       a {
         color: #8e8e8e;
@@ -316,10 +317,23 @@ html, body {
     overflow: scroll;
   }
 
+  .vertical-center {
+    align-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & * {
+      width: 100%;
+    }
+
+  }
+
   .section-content {
     height: calc(100% - 76px - 50px);
     background: $bg;
     overflow: scroll;
+
 
     .circle-button-container {
       $margin: 25px;
@@ -400,11 +414,15 @@ html, body {
       }
     }
 
-    h2 {
+    h2, h3 {
       margin: 0;
       padding-left: $defaultPadding;
       padding-top: $defaultPadding;
       text-transform: capitalize;
+    }
+
+    h2 {
+      font-weight: 300;
     }
   }
 
@@ -420,7 +438,7 @@ html, body {
       margin: 0;
       padding: 0;
       color: $text-disabled;
-      font-size: 1.5em;
+      font-size: 1em;
     }
   }
 
@@ -430,6 +448,7 @@ html, body {
     border-top: $bg-darker 2px solid;
     z-index: 10;
     display: block;
+    background: $bg-light;
   }
 
 }
@@ -515,19 +534,12 @@ html, body {
 
 .conjugation-table {
   width: 100%;
+  display: grid;
+  grid-template-columns: 20% 30% 40%;
+  grid-gap: 5px;
+  padding: 5px;
 
-  th {
-    text-align: left;
-    font-size: .9em;
-    font-weight: normal;
-  }
-
-  tr {
-    height: 30px;
-  }
-
-  td {
-    font-size: .9em;
+  div {
   }
 
   .cell-title {

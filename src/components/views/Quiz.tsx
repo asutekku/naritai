@@ -74,7 +74,7 @@ class Quiz extends React.Component<quizProps, quizState> {
         }
         this.state = {
             word: word,
-            conjugation: this.randomProperty(conjugations),
+            conjugation: Quiz.randomProperty(conjugations),
             allConjugations: conjugations,
             answerValue: '',
             showAnswer: false,
@@ -88,6 +88,11 @@ class Quiz extends React.Component<quizProps, quizState> {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleInputSubmit = this.handleInputSubmit.bind(this);
     }
+
+    static randomProperty(obj: {}) {
+        let keys = Object.keys(obj);
+        return obj[keys[keys.length * Math.random() << 0]];
+    };
 
     handleInputSubmit(event) {
         event.preventDefault();
@@ -114,7 +119,7 @@ class Quiz extends React.Component<quizProps, quizState> {
             wCon = conjugator.conjugate(word.japanese, word.type);
         }
         let allConjugations: any = correct ? wCon : this.state.allConjugations;
-        let conjugation: any = correct ? this.randomProperty(wCon) : this.state.conjugation;
+        let conjugation: any = correct ? Quiz.randomProperty(wCon) : this.state.conjugation;
         this.setState({
             answerValue: '',
             showAnswer: false,
@@ -132,11 +137,6 @@ class Quiz extends React.Component<quizProps, quizState> {
         this.setState({answerValue: event.target.value});
         event.preventDefault();
     }
-
-    randomProperty(obj: {}) {
-        let keys = Object.keys(obj);
-        return obj[keys[keys.length * Math.random() << 0]];
-    };
 
     toggleReading(e) {
         e.preventDefault();
@@ -159,16 +159,7 @@ class Quiz extends React.Component<quizProps, quizState> {
         window.removeEventListener('resize', this.handleResize);
     }
 
-    answerAction = (rightChoice: boolean) => {
-        if (rightChoice) {
-            this.updateQuestion(true);
-            console.log(this.state.word);
-        } else {
-            this.updateQuestion(false);
-        }
-        console.log('Uh oh, the answer was ' + rightChoice);
-        console.log('yo');
-    };
+    answerAction = (rightChoice: boolean) => this.updateQuestion(rightChoice);
 
     getRandomAnswers(conjugations?: any, correct?: string) {
         let workCon = this.state.allConjugations;
@@ -179,14 +170,11 @@ class Quiz extends React.Component<quizProps, quizState> {
         }
         let array: any[] = [];
         this.answers = [];
-        let answer = <MultiSelection
-            title={correct ? correct : form}
-            correct={true}
-            onClick={this.answerAction}
-            key={Math.random()}/>;
+        let answer = <MultiSelection title={correct ? correct : form} correct={true} onClick={this.answerAction}
+                                     key={Math.random()}/>;
         let count = 3;
         while (count > 0) {
-            let conjugation = this.randomProperty(workCon);
+            let conjugation = Quiz.randomProperty(workCon);
             if (conjugation.form !== form) {
                 array.push(
                     <MultiSelection
@@ -231,10 +219,7 @@ class Quiz extends React.Component<quizProps, quizState> {
                          onTouchEnd={(e) => this.toggleReading(e)}>
                         <div className={'quiz-question-container-inner'}>
                             <p className={'form'}>
-                                <Link to={'/level'}>
-                                    {this.state.conjugation.name}
-                                    <span className={'no-style'}>-form</span>
-                                </Link>
+                                {this.state.conjugation.name}
                             </p>
                             <p className={'word-jp'}>
                                 <JapaneseWord word={this.state.word} showFuri={this.state.showReading}/>
