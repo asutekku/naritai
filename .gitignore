@@ -1,0 +1,7 @@
+.idea/
+dist/
+node_modules/
+tests/
+configs/
+img_src/
+

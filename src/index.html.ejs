@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" name="viewport">
+    <meta content="Study japanese verb conjugations efficiently!" name="description">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <link href="/manifest.json" rel="manifest">
+    <title>Study Japanese verbs | Naritai</title>
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+    <meta content="Naritai" name="apple-mobile-web-app-title">
+    <link href="assets/img/icons-512.png" rel="apple-touch-icon">
+    <link href="assets/img/icons-152.png" rel="apple-touch-icon" sizes="152x152">
+    <link href="assets/img/icons-180.png" rel="apple-touch-icon" sizes="180x180">
+    <link href="assets/img/icons-167.png" rel="apple-touch-icon" sizes="167x167">
+    <link href="assets/img/apple-launch-1242x2208.png"
+          media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)"
+          rel="apple-touch-startup-image">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+</head>
+<body>
+<div id="root"></div>
+
+<!-- Dependencies -->
+<% if (webpackConfig.mode == 'production') { %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.8.6/umd/react.production.min.js"
+            integrity="sha256-3vo65ZXn5pfsCfGM5H55X+SmwJHBlyNHPwRmWAPgJnM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.6/umd/react-dom.production.min.js"
+            integrity="sha256-qVsF1ftL3vUq8RFOLwPnKimXOLo72xguDliIxeffHRc=" crossorigin="anonymous"></script>
+<% } else { %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.8.6/umd/react.development.js"
+            integrity="sha256-9H05eCUa5x4G28dytYBwoAXkR3XgPE3sCogyXhrINwo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.6/umd/react-dom.development.js"
+            integrity="sha256-I/ClrYyzlYEQkMUjqr7G3m/83znlycDCeI2xuBZsQx0=" crossorigin="anonymous"></script>
+<% } %>
+</body>
+</html>
